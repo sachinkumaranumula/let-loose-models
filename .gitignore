@@ -1,6 +1,7 @@
 # Custom App Ignores
 postgres
 chromadb
+.venv
 
 # Logs
 logs
