@@ -2,6 +2,7 @@
 postgres
 chromadb
 .venv
+*.local.sh 
 
 # Logs
 logs
