@@ -1,3 +1,7 @@
+# Custom App Ignores
+postgres
+chromadb
+
 # Logs
 logs
 *.log

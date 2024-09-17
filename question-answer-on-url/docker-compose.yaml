@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  chromadb:
+    container_name: chromadb
+    image: chromadb/chroma:latest
+    volumes:
+      - ./chromadb:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma # this is the default path, change it as needed
+      - ANONYMIZED_TELEMETRY=${ANONYMIZED_TELEMETRY:-TRUE}
+    ports:
+      - 8000:8000
+  # https://github.com/Mintplex-Labs/vector-admin/blob/master/docker/DOCKER.md
+  # https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: vectoradmin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: vdbms
+  vector-admin:
+    container_name: vector-admin
+    image: mintplexlabs/vectoradmin:latest
+    environment:
+      - JWT_SECRET=${VECTOR_ADMIN_JWT_SECRET:-vector_admin_jwt_secret}
+      - INNGEST_SIGNING_KEY=${VECTOR_ADMIN_INNGEST_SIGNING_KEY:-vector_admin_ingest_signing_key}
+      - INNGEST_LANDING_PAGE=${VECTOR_ADMIN_INNGEST_LANDING_PAGE:-TRUE}
+      - DATABASE_CONNECTION_STRING=postgresql://vectoradmin:password@host.docker.internal:5432/vdbms?connect_timeout=300
+      - SERVER_PORT=3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+      - chromadb
