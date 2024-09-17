@@ -11,5 +11,5 @@ Let Loose Models is my playground and test bed for evaluating LLM workflows fit 
 # Create Embeddings
 
 - `export CHROMA_COLLECTION=chroma, CHROMA_HOST=localhost, CHROMA_PORT=8000`
-- `export OPENAI_API_KEY=sk-svcacct-jHqBrYsO3N2_0YZSF6zOH6COr9bz05PvZuv_3mypVgO5WMYI5btfeIa6EXvKk2OMol3VtT3BlbkFJUask6Tlok3t-E7-2zzkudfX0ltvEzXEXKV_0dlmAUJAHPfPxKtBD-gSvmAssYsg3oJtAA`
+- `export OPENAI_API_KEY=`
 - `npm run generate`
