@@ -2,7 +2,8 @@
 postgres
 chromadb
 .venv
-*.local.sh 
+*.local.sh
+qdrant_data
 
 # Logs
 logs
