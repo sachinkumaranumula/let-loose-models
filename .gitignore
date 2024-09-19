@@ -4,6 +4,7 @@ chromadb
 .venv
 *.local.sh
 qdrant_data
+data/
 
 # Logs
 logs
