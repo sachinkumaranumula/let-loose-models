@@ -1,3 +1,11 @@
+# Custom App Ignores
+postgres
+chromadb
+.venv
+*.local.sh
+qdrant_data
+data/
+
 # Logs
 logs
 *.log
